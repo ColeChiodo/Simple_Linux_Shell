@@ -62,6 +62,17 @@ int main(int argc, char *argv[]){
         if(strcmp(input, "exit") == 0)
             break;
 
+        //implements the cd command.
+        //if the command is cd, run the chdir function
+        if(strncmp(input, "cd ", 3) == 0) {
+            char *path = input + 3;
+
+            if(chdir(path) != 0) {
+                perror("cd");
+            }
+            continue;
+        }
+
         //parse the input for the pipe character and place it into an array for execution later
         //this will allow us to execute the command with the arguments after
         char* inputp[INPUT_SIZE];
